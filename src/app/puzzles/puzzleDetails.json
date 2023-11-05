@@ -2,63 +2,63 @@
   {
     "name": "Christmas",
     "category": "Christmas",
-    "url_path": "christmas",
+    "urlPath": "christmas",
     "illustration": "/christmas/christmas-elfs-animate.svg",
-    "illustration_alt": "Christmas elfs decorating"
+    "illustrationAlt": "Christmas elfs decorating"
   },
   {
     "name": "Halloween",
     "category": "Halloween",
-    "url_path": "halloween",
+    "urlPath": "halloween",
     "illustration": "/halloween/evil-ghost-animate.svg",
-    "illustration_alt": "3 terrorising ghosts"
+    "illustrationAlt": "3 terrorising ghosts"
   },
   {
     "name": "12 Days of Christmas",
     "category": "Christmas",
-    "url_path": "12-days",
+    "urlPath": "12-days",
     "illustration": "/christmas/friends-singing-christmas-carol-animate.svg",
-    "illustration_alt": "Friends singing a Christmas carol",
+    "illustrationAlt": "Friends singing a Christmas carol",
     "passcode": 1234
   },
   {
     "name": "Christmas Modelling",
     "category": "Christmas",
-    "url_path": "christmas-modelling",
+    "urlPath": "christmas-modelling",
     "illustration": "/christmas/santa-claus-sleigh-animate.svg",
-    "illustration_alt": "Santa riding his sleigh",
+    "illustrationAlt": "Santa riding his sleigh",
     "passcode": 1234
   },
   {
     "name": "Passage Decoding",
     "category": "Christmas",
-    "url_path": "passage-decoding",
+    "urlPath": "passage-decoding",
     "illustration": "/christmas/gingerbread-man-cookies-animate.svg",
-    "illustration_alt": "3 gingerbread men",
+    "illustrationAlt": "3 gingerbread men",
     "passcode": 1234
   },
   {
     "name": "Ghosts of the 4 Thinkers",
     "category": "Halloween",
-    "url_path": "4-thinkers",
+    "urlPath": "4-thinkers",
     "illustration": "/halloween/zombies-animate.svg",
-    "illustration_alt": "3 zombies rising from their graves",
+    "illustrationAlt": "3 zombies rising from their graves",
     "passcode": 1234
   },
   {
     "name": "Let the North Light Guide the Way",
     "category": "Halloween",
-    "url_path": "north-light",
+    "urlPath": "north-light",
     "illustration": "/halloween/cat-with-a-witch-hat-animate.svg",
-    "illustration_alt": "Cat with a witch hat",
+    "illustrationAlt": "Cat with a witch hat",
     "passcode": 1234
   },
   {
     "name": "Pumpkin Sequence",
     "category": "Halloween",
-    "url_path": "pumpkin-sequence",
+    "urlPath": "pumpkin-sequence",
     "illustration": "/halloween/house-halloween-decorations-animate.svg",
-    "illustration_alt": "House with Halloween decorations",
+    "illustrationAlt": "House with Halloween decorations",
     "passcode": 1234
   }
 ]

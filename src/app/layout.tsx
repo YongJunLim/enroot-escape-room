@@ -16,7 +16,9 @@ export default function SelectionLayout({
 }) {
   return (
     <html lang="en">
-      <body className={jost.className}>{children}</body>
+      <body className={`min-h-screen ${jost.className}`}>
+        {children}
+      </body>
     </html>
   )
 }

@@ -1,29 +1,49 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
-import Button from '../../../components/Button'
+import Button from '../../../components/button'
 import type { Puzzle } from '../puzzle'
-import _puzzle_details from '../puzzle_details.json'
-const puzzle_details: Puzzle[] = _puzzle_details as Puzzle[]
+import _puzzleDetails from '../puzzleDetails.json'
+const puzzleDetails: Puzzle[] = _puzzleDetails as Puzzle[]
 
-export default function Puzzle_Page({ params }: { params: { puzzle: string } }) {
+export default function puzzlePage({ params }: { params: { puzzle: string } }) {
   const { puzzle } = params
-  const selected_puzzle: Puzzle = puzzle_details.filter(
-    (puzzle_detail) => puzzle_detail.url_path === puzzle
+  const selected_puzzle: Puzzle = puzzleDetails.filter(
+    (puzzleDetail) => puzzleDetail.urlPath === puzzle
   )[0]
   if (!selected_puzzle) {
     notFound();
   }
   return (
     <main className="grid min-h-screen grid-cols-1 auto-rows-min justify-items-center items-center gap-4 p-8">
-      <Image
-        src={selected_puzzle.illustration}
-        alt={selected_puzzle.illustration_alt}
-        width={500}
-        height={500}
-      />
+      <div>
+        <Image
+          src={selected_puzzle.illustration}
+          alt={selected_puzzle.illustrationAlt}
+          width={500}
+          height={500}
+        />
+      </div>
+      <div>
+        <p className="text-xs font-light text-gray-500">
+          <Link
+            href="https://storyset.com"
+            prefetch={false}
+          >
+            Illustrations by Storyset
+          </Link>
+        </p>
+      </div>
+      <div>
+        <h1 className={`mb-4 text-3xl font-bold`}>
+          {selected_puzzle.name}
+        </h1>
+      </div>
+      <div>
+      </div>
     </main>
   )
 }

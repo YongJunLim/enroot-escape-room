@@ -5,34 +5,34 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
-import Button from '../../../components/Button'
+import Button from '../../../components/button'
 import type { Puzzle } from '../../puzzles/puzzle'
-import _puzzle_details from '../../puzzles/puzzle_details.json'
-const puzzle_details: Puzzle[] = _puzzle_details as Puzzle[]
+import _puzzleDetails from '../../puzzles/puzzleDetails.json'
+const puzzleDetails: Puzzle[] = _puzzleDetails as Puzzle[]
 const rooms: string[] = [...new Set(
-  puzzle_details.flatMap(
+  puzzleDetails.flatMap(
     (puzzle) => puzzle.category.toLowerCase()
   )
 )]
 
-export default function Puzzle_Selection({ params }: { params: { room: string } }) {
+export default function puzzleSelection({ params }: { params: { room: string } }) {
   const { room } = params
   if (!rooms.includes(room)) {
     notFound();
   }
-  const room_puzzles: Puzzle[] = puzzle_details.filter((puzzle) => puzzle.category.toLowerCase() === room)
+  const room_puzzles: Puzzle[] = puzzleDetails.filter((puzzle) => puzzle.category.toLowerCase() === room)
   const room_image = <Image
     src={room_puzzles[0].illustration}
-    alt={room_puzzles[0].illustration_alt}
+    alt={room_puzzles[0].illustrationAlt}
     height={600}
     width={600}
   />
-  const puzzle_buttons = room_puzzles.slice(1).map(puzzle =>
+  const puzzleButtons = room_puzzles.slice(1).map(puzzle =>
     <div>
       <Button
         category={puzzle.category}
-        button_link={`/puzzles/${puzzle.url_path}`}
-        button_name={puzzle.name}
+        buttonLink={`/puzzles/${puzzle.urlPath}`}
+        buttonName={puzzle.name}
       />
     </div>
   );
@@ -40,11 +40,21 @@ export default function Puzzle_Selection({ params }: { params: { room: string } 
     <main className="grid min-h-screen grid-cols-1 auto-rows-min justify-items-center items-center gap-4 p-8">
       <div>{room_image}</div>
       <div>
+        <p className="text-xs font-light text-gray-500">
+          <Link
+            href="https://storyset.com"
+            prefetch={false}
+          >
+            Illustrations by Storyset
+          </Link>
+        </p>
+      </div>
+      <div>
         <h1 className={`mb-4 text-3xl font-bold`}>
           Select {room_puzzles[0].category} Puzzle:
         </h1>
       </div>
-      {puzzle_buttons}
+      {puzzleButtons}
     </main>
   )
 }
