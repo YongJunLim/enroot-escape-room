@@ -1,7 +1,6 @@
-// Root layout for selection of escape rooms
 import type { Metadata } from 'next'
 import { Jost } from 'next/font/google'
-import './../globals.css'
+import './globals.css'
 
 const jost = Jost({ subsets: ['latin'] })
 
@@ -10,8 +9,8 @@ export const metadata: Metadata = {
   description: "Companion webapp for enROOT 2023's Halloween and Christmas themed escape rooms",
 }
 
-export default async function Layout({
-  children
+export default function SelectionLayout({
+  children,
 }: {
   children: React.ReactNode
 }) {

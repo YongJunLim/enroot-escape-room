@@ -13,7 +13,10 @@ export const metadata: Metadata = {
 export default function PuzzleLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode,
+  params: {
+    puzzle: string
+  }
 }) {
   return (
     <html lang="en">
