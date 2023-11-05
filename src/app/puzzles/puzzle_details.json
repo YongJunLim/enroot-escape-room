@@ -2,21 +2,21 @@
   {
     "name": "Christmas",
     "category": "Christmas",
-    "url_path": "/christmas",
+    "url_path": "christmas",
     "illustration": "/christmas/christmas-elfs-animate.svg",
     "illustration_alt": "Christmas elfs decorating"
   },
   {
     "name": "Halloween",
     "category": "Halloween",
-    "url_path": "/halloween",
+    "url_path": "halloween",
     "illustration": "/halloween/evil-ghost-animate.svg",
     "illustration_alt": "3 terrorising ghosts"
   },
   {
     "name": "12 Days of Christmas",
     "category": "Christmas",
-    "url_path": "/puzzles/12-days",
+    "url_path": "12-days",
     "illustration": "/christmas/friends-singing-christmas-carol-animate.svg",
     "illustration_alt": "Friends singing a Christmas carol",
     "passcode": 1234
@@ -24,7 +24,7 @@
   {
     "name": "Christmas Modelling",
     "category": "Christmas",
-    "url_path": "/puzzles/christmas-modelling",
+    "url_path": "christmas-modelling",
     "illustration": "/christmas/santa-claus-sleigh-animate.svg",
     "illustration_alt": "Santa riding his sleigh",
     "passcode": 1234
@@ -32,7 +32,7 @@
   {
     "name": "Passage Decoding",
     "category": "Christmas",
-    "url_path": "/puzzles/passage-decoding",
+    "url_path": "passage-decoding",
     "illustration": "/christmas/gingerbread-man-cookies-animate.svg",
     "illustration_alt": "3 gingerbread men",
     "passcode": 1234
@@ -40,7 +40,7 @@
   {
     "name": "Ghosts of the 4 Thinkers",
     "category": "Halloween",
-    "url_path": "/puzzles/4-thinkers",
+    "url_path": "4-thinkers",
     "illustration": "/halloween/zombies-animate.svg",
     "illustration_alt": "3 zombies rising from their graves",
     "passcode": 1234
@@ -48,7 +48,7 @@
   {
     "name": "Let the North Light Guide the Way",
     "category": "Halloween",
-    "url_path": "/puzzles/north-light",
+    "url_path": "north-light",
     "illustration": "/halloween/cat-with-a-witch-hat-animate.svg",
     "illustration_alt": "Cat with a witch hat",
     "passcode": 1234
@@ -56,7 +56,7 @@
   {
     "name": "Pumpkin Sequence",
     "category": "Halloween",
-    "url_path": "/puzzles/pumpkin-sequence",
+    "url_path": "pumpkin-sequence",
     "illustration": "/halloween/house-halloween-decorations-animate.svg",
     "illustration_alt": "House with Halloween decorations",
     "passcode": 1234

@@ -15,7 +15,7 @@ const rooms: string[] = [...new Set(
   )
 )]
 
-export default function Home({ params }: { params: { room: string } }) {
+export default function Puzzle_Selection({ params }: { params: { room: string } }) {
   const { room } = params
   if (!rooms.includes(room)) {
     notFound();
@@ -31,7 +31,7 @@ export default function Home({ params }: { params: { room: string } }) {
     <div>
       <Button
         category={puzzle.category}
-        button_link={puzzle.url_path}
+        button_link={`/puzzles/${puzzle.url_path}`}
         button_name={puzzle.name}
       />
     </div>

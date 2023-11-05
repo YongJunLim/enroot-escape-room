@@ -7,10 +7,10 @@ export default function Home() {
     <main className="grid min-h-screen grid-cols-1 auto-rows-min justify-items-center items-center gap-4 p-8">
       <div>
         <Image
-          src="/404.svg"
-          alt="Placeholder Image"
-          width={1840}
-          height={1380}
+          src="/escape-room-animate.svg"
+          alt="Escape room"
+          width={750}
+          height={500}
         />
       </div>
       <div>
