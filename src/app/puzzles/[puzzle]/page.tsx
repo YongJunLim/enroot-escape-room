@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import Button from '../../../components/button'
+import Passcode from '../../../components/passcode'
 import type { Puzzle } from '../puzzle'
 import _puzzleDetails from '../puzzleDetails.json'
 const puzzleDetails: Puzzle[] = _puzzleDetails as Puzzle[]
@@ -42,7 +43,10 @@ export default function puzzlePage({ params }: { params: { puzzle: string } }) {
           {selected_puzzle.name}
         </h1>
       </div>
-      <div>
+      <div className="flex items-center justify-center">
+        <Passcode
+          count={4}
+        />
       </div>
     </main>
   )
