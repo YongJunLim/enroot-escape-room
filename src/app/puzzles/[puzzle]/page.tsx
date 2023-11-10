@@ -43,7 +43,7 @@ export default function puzzlePage({ params }: { params: { puzzle: string } }) {
           {selected_puzzle.name}
         </h1>
       </div>
-      <div className="flex items-center justify-center">
+      <div>
         <Passcode
           count={4}
         />
