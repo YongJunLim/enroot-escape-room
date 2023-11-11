@@ -19,7 +19,7 @@
     "urlPath": "12-days",
     "illustration": "/christmas/friends-singing-christmas-carol-animate.svg",
     "illustrationAlt": "Friends singing a Christmas carol",
-    "passcode": 1234
+    "id": 1
   },
   {
     "name": "Christmas Modelling",
@@ -27,7 +27,7 @@
     "urlPath": "christmas-modelling",
     "illustration": "/christmas/santa-claus-sleigh-animate.svg",
     "illustrationAlt": "Santa riding his sleigh",
-    "passcode": 1234
+    "id": 2
   },
   {
     "name": "Passage Decoding",
@@ -35,7 +35,7 @@
     "urlPath": "passage-decoding",
     "illustration": "/christmas/gingerbread-man-cookies-animate.svg",
     "illustrationAlt": "3 gingerbread men",
-    "passcode": 1234
+    "id": 3
   },
   {
     "name": "Ghosts of the 4 Thinkers",
@@ -43,7 +43,7 @@
     "urlPath": "4-thinkers",
     "illustration": "/halloween/zombies-animate.svg",
     "illustrationAlt": "3 zombies rising from their graves",
-    "passcode": 1234
+    "id": 4
   },
   {
     "name": "Let the North Light Guide the Way",
@@ -51,7 +51,7 @@
     "urlPath": "north-light",
     "illustration": "/halloween/cat-with-a-witch-hat-animate.svg",
     "illustrationAlt": "Cat with a witch hat",
-    "passcode": 1234
+    "id": 5
   },
   {
     "name": "Pumpkin Sequence",
@@ -59,6 +59,6 @@
     "urlPath": "pumpkin-sequence",
     "illustration": "/halloween/house-halloween-decorations-animate.svg",
     "illustrationAlt": "House with Halloween decorations",
-    "passcode": 1234
+    "id": 6
   }
 ]

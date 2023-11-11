@@ -45,7 +45,9 @@ export default function puzzlePage({ params }: { params: { puzzle: string } }) {
       </div>
       <div>
         <Passcode
-          count={4}
+          passcodeCount={4}
+          puzzleId={selected_puzzle.id?.toString()}
+          puzzleName={selected_puzzle.name}
         />
       </div>
     </main>

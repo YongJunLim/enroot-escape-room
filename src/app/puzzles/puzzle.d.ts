@@ -5,4 +5,5 @@ export type Puzzle = {
   illustration: string;
   illustrationAlt: string;
   passcode?: number;
+  id?: number;
 };

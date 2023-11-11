@@ -1,23 +1,37 @@
 import { BaseSyntheticEvent, KeyboardEvent, useRef, useState, useMemo } from 'react';
 import { usePasscode } from "react-headless-passcode";
+import useSWR from 'swr';
 
 interface PasscodeProps {
-  passcodeCount: number
-}
-
-function checkPasscode(passcodeString: string) {
-  if (passcodeString === "1234") {
-    return true;
-  } else {
-    return false;
-  }
+  passcodeCount: number,
+  puzzleId: number,
+  puzzleName: string
 }
 
 export default function Passcode(props: PasscodeProps) { 
-  const { passcodeCount } = props;
+  const { passcodeCount, puzzleId, puzzleName } = props;
   const { passcode, getEventHandlers, refs, isComplete } = usePasscode({
-    count: 4
+    count: passcodeCount
   });
+  const fetcher = (url: string) => fetch(url).then((res) => res.json());
+  const { data, error } = useSWR(
+    `/api/checkPasscode?puzzleId=${puzzleId}&puzzleName=${puzzleName}`,
+    fetcher
+  );
+
+  function checkPasscode(passcodeString: string) {
+    if (isComplete) {
+      if (error) {
+        console.log(error);
+      }
+      if (data && passcodeString === data.passcode.toString()) {
+        return true;
+      }
+    } else {
+      return false;
+    }
+  }
+  
   const passcodeString: string = passcode.join('')
   const correctPasscode = checkPasscode(passcodeString)
 
@@ -33,7 +47,7 @@ export default function Passcode(props: PasscodeProps) {
             inputMode="numeric"
             maxLength={1}
             pattern="\d{1}"
-            min={1}
+            min={0}
             max={9}
             key={`index-${index}`}
             readOnly={correctPasscode ? true : undefined}
