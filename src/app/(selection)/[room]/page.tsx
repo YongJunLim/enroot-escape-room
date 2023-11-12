@@ -30,6 +30,7 @@ export default function puzzleSelection({ params }: { params: { room: string } }
   const puzzleButtons = room_puzzles.slice(1).map(puzzle =>
     <div>
       <Button
+        puzzleId={puzzle.id}
         category={puzzle.category}
         buttonLink={`/puzzles/${puzzle.urlPath}`}
         buttonName={puzzle.name}

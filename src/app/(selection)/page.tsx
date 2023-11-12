@@ -2,6 +2,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
+import Button from '@/components/button'
+
 export default function Home() {
   return (
     <main className="grid h-5/6 grid-cols-1 auto-rows-min justify-items-center items-center gap-4 p-8">
@@ -29,20 +31,18 @@ export default function Home() {
         </h1>
       </div>
       <div>
-        <button
-          className="w-48 h-14 rounded-md flex items-center justify-center bg-gradient-to-r from-rose-500 to-red-600 text-gray-50 font-semibold shadow-lg">
-          <Link href="/christmas">
-            Christmas
-          </Link>
-        </button>
+        <Button
+          category="Christmas"
+          buttonLink="/christmas"
+          buttonName="Christmas"
+        />
       </div>
       <div>
-        <button
-          className="w-48 h-14 rounded-md flex items-center justify-center bg-gradient-to-r from-amber-500 to-orange-500 text-gray-50 font-semibold shadow-lg">
-          <Link href="/halloween">
-            Halloween
-          </Link>
-        </button>
+        <Button
+          category="Halloween"
+          buttonLink="/halloween"
+          buttonName="Halloween"
+        />
       </div>
     </main>
   )

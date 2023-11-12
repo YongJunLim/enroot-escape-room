@@ -1,5 +1,7 @@
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb'
-import { DynamoDBDocumentClient, GetCommand } from "@aws-sdk/lib-dynamodb"
+import { DynamoDBDocumentClient, GetCommand } from '@aws-sdk/lib-dynamodb'
+import type { NextRequest } from 'next/server'
+import { NextResponse } from 'next/server'
 
 const dbClient = new DynamoDBClient({
   credentials: {
@@ -9,11 +11,11 @@ const dbClient = new DynamoDBClient({
 })
 const docClient = DynamoDBDocumentClient.from(dbClient)
 
-export async function GET(req: Request) {
-  const { searchParams } = new URL(req.url)
+export async function GET(request: NextRequest) {
+  const searchParams = request.nextUrl.searchParams
   const puzzleId = searchParams.get('puzzleId')
   const puzzleName = searchParams.get('puzzleName')
-  console.log(puzzleId, puzzleName)
+  const passcode = searchParams.get('passcode')
   var commandParams = {
     TableName: process.env.PASSCODE_TABLE,
     Key: {
@@ -23,5 +25,9 @@ export async function GET(req: Request) {
   }
   const command = new GetCommand(commandParams)
   const {Item} = await docClient.send(command)
-  return Response.json(Item)
+  if (Item.passcode.toString() === passcode) {
+    return NextResponse.json({ success: true })
+  } else {
+    return NextResponse.json({ success: false })
+  }
 }
