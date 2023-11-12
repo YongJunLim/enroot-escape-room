@@ -1,6 +1,6 @@
 import { BaseSyntheticEvent, KeyboardEvent, useRef, useState, useMemo, useEffect } from 'react';
 import { usePasscode } from "react-headless-passcode";
-import useSWR, { useSWRConfig } from 'swr'
+import useSWR from 'swr'
 
 interface PasscodeProps {
   passcodeCount: number,
@@ -17,17 +17,16 @@ export default function Passcode(props: PasscodeProps) {
   });
   const passcodeString: string = passcode.join('')
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
-  const { data, error } = useSWR(
-    isComplete ? `/api/checkPasscode?puzzleId=${puzzleId}&puzzleName=${puzzleName}&passcode=${passcodeString}`: null,
+  const checkPasscodeSWR = useSWR(
+    () => isComplete ? `/api/checkPasscode?puzzleId=${puzzleId}&puzzleName=${puzzleName}&passcode=${passcodeString}`: null,
     fetcher
   );
-  const { mutate } = useSWRConfig()
 
   function checkPasscode(passcodeString: string) {
-    if (error) {
-      console.log(error);
+    if (checkPasscodeSWR.error) {
+      console.error(checkPasscodeSWR.error);
     }
-    if (data && data.success) {
+    if (checkPasscodeSWR.data && checkPasscodeSWR.data.success) {
       return true;
     } else {
       return false;
@@ -37,8 +36,29 @@ export default function Passcode(props: PasscodeProps) {
   const correctPasscode = checkPasscode(passcodeString)
 
   useEffect(() => {
-    if(correctPasscode){ // you can add you logic here
-        setIsCorrectPasscode(true)
+    if (correctPasscode) {
+      setIsCorrectPasscode(true)
+      fetch('/api/submitTimestamp', {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json',
+            },
+            body: JSON.stringify(
+              { puzzleId: puzzleId,
+                puzzleName: puzzleName
+              }
+            ),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.success === false) {
+                alert("The passcode was correct but the submitted time was not recorded. Try entering the passcode again.")
+              }
+            })
+            .catch((error) => {
+                console.error(error);
+                alert("The passcode was correct but the submitted time was not recorded. Try entering the passcode again.")
+            });
     }
   }, [correctPasscode])
 
@@ -48,7 +68,7 @@ export default function Passcode(props: PasscodeProps) {
         const { onChange, onFocus, onKeyUp, onKeyDown } = getEventHandlers(index);
         return (
           <input
-            className={`w-14 h-14 rounded-md bg-gray-100 ${isComplete && correctPasscode ? 'border-emerald-500 border-2 shadow-emerald-700' : isComplete ? 'border-red-500 border-2 shadow-red-700' : 'shadow-slate-700'} text-gray-950 text-center font-bold shadow-inner m-1`}
+            className={`w-14 h-14 rounded-md bg-gray-100 ${isComplete && correctPasscode ? 'border-emerald-500 border-2 shadow-emerald-700' : checkPasscodeSWR.isLoading ? 'border-amber-500 border shadow-amber-700' : isComplete ? 'border-red-500 border-2 shadow-red-700' : 'shadow-slate-700'} text-gray-950 text-center font-bold shadow-inner m-1`}
             ref={(el) => el && (refs.current[index] = el)}
             type="text"
             inputMode="numeric"

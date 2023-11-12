@@ -1,5 +1,5 @@
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb'
-import { DynamoDBDocumentClient, GetCommand } from '@aws-sdk/lib-dynamodb'
+import { DynamoDBDocumentClient, PutCommand } from '@aws-sdk/lib-dynamodb'
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 
@@ -11,23 +11,23 @@ const dbClient = new DynamoDBClient({
 })
 const docClient = DynamoDBDocumentClient.from(dbClient)
 
-export async function GET(request: NextRequest) {
-  const searchParams = request.nextUrl.searchParams
-  const puzzleId = searchParams.get('puzzleId')
-  const puzzleName = searchParams.get('puzzleName')
-  const passcode = searchParams.get('passcode')
+export async function POST(request: NextRequest) {
+  const submittedTimestamp = Date.now()
+  const { puzzleId, puzzleName } = await request.json()
   const commandParams = {
-    TableName: process.env.PASSCODE_TABLE,
-    Key: {
+    TableName: process.env.TIMINGS_TABLE,
+    Item: {
       id: puzzleId,
+      submission_time: submittedTimestamp,
       puzzle_name: puzzleName
     }
   }
-  const command = new GetCommand(commandParams)
-  const {Item} = await docClient.send(command)
-  if (Item.passcode.toString() === passcode) {
+  const command = new PutCommand(commandParams);
+  const response = await docClient.send(command)
+  if (response["$metadata"].httpStatusCode === 200) {
     return NextResponse.json({ success: true })
   } else {
+    console.error(response)
     return NextResponse.json({ success: false })
   }
 }
