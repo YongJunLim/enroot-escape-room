@@ -1,4 +1,4 @@
-import { BaseSyntheticEvent, KeyboardEvent, useRef, useState, useMemo } from 'react';
+import { BaseSyntheticEvent, KeyboardEvent, useRef, useState, useMemo, useEffect } from 'react';
 import { usePasscode } from "react-headless-passcode";
 import useSWR, { useSWRConfig } from 'swr'
 
@@ -18,20 +18,17 @@ export default function Passcode(props: PasscodeProps) {
   const passcodeString: string = passcode.join('')
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
   const { data, error } = useSWR(
-    `/api/checkPasscode?puzzleId=${puzzleId}&puzzleName=${puzzleName}&passcode=${passcodeString}`,
+    isComplete ? `/api/checkPasscode?puzzleId=${puzzleId}&puzzleName=${puzzleName}&passcode=${passcodeString}`: null,
     fetcher
   );
   const { mutate } = useSWRConfig()
 
   function checkPasscode(passcodeString: string) {
-    if (isComplete) {
-      mutate(`/api/checkPasscode?puzzleId=${puzzleId}&puzzleName=${puzzleName}&passcode=${passcodeString}`)
-      if (error) {
-        console.log(error);
-      }
-      if (data && data.success) {
-        return true;
-      }
+    if (error) {
+      console.log(error);
+    }
+    if (data && data.success) {
+      return true;
     } else {
       return false;
     }
@@ -39,9 +36,11 @@ export default function Passcode(props: PasscodeProps) {
   
   const correctPasscode = checkPasscode(passcodeString)
 
-  if (correctPasscode) {
-    setIsCorrectPasscode(true)
-  }
+  useEffect(() => {
+    if(correctPasscode){ // you can add you logic here
+        setIsCorrectPasscode(true)
+    }
+  }, [correctPasscode])
 
   return (
     <>
