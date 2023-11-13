@@ -9,7 +9,7 @@ export default function Home() {
     <main className="grid h-5/6 grid-cols-1 auto-rows-min justify-items-center items-center gap-4 p-8">
       <div>
         <Image
-          src="/escape-room-animate.svg"
+          src="/escape-room-hero-img.svg"
           alt="Escape room"
           width={750}
           height={500}
@@ -21,7 +21,7 @@ export default function Home() {
             href="https://storyset.com"
             prefetch={false}
           >
-            Illustrations by Storyset
+            Original Illustration by Storyset
           </Link>
         </p>
       </div>
