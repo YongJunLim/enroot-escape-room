@@ -1,10 +1,10 @@
-import { BaseSyntheticEvent, KeyboardEvent, useRef, useState, useMemo, useEffect } from 'react';
+import { BaseSyntheticEvent, KeyboardEvent, useRef, useState, useMemo, useEffect, Dispatch, SetStateAction } from 'react';
 import { usePasscode } from "react-headless-passcode";
 import useSWR from 'swr'
 
 interface PasscodeProps {
   passcodeCount: number,
-  puzzleId: number,
+  puzzleId: number | undefined,
   puzzleName: string,
   isCorrectPasscode: boolean,
   setIsCorrectPasscode: Dispatch<SetStateAction<boolean>>

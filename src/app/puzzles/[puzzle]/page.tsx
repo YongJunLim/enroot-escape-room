@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 import Button from '@/components/button'
 import Passcode from '@/components/passcode'
-import type { Puzzle } from '../puzzle'
+import type { Puzzle } from '@/types'
 import _puzzleDetails from '../puzzleDetails.json'
 const puzzleDetails: Puzzle[] = _puzzleDetails as Puzzle[]
 
@@ -16,7 +16,7 @@ export default function puzzlePage({ params }: { params: { puzzle: string } }) {
   const selected_puzzle: Puzzle = puzzleDetails.filter(
     (puzzleDetail) => puzzleDetail.urlPath === puzzle
   )[0]
-  const [isCorrectPasscode, setIsCorrectPasscode] = useState(false);
+  const [isCorrectPasscode, setIsCorrectPasscode] = useState<boolean>(false);
 
   if (!selected_puzzle) {
     notFound();
@@ -50,7 +50,7 @@ export default function puzzlePage({ params }: { params: { puzzle: string } }) {
       <div>
         <Passcode
           passcodeCount={4}
-          puzzleId={selected_puzzle.id?.toString()}
+          puzzleId={selected_puzzle.id}
           puzzleName={selected_puzzle.name}
           isCorrectPasscode={isCorrectPasscode}
           setIsCorrectPasscode={setIsCorrectPasscode}

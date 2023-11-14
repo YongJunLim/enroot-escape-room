@@ -5,9 +5,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
-import Button from '../../../components/button'
-import type { Puzzle } from '../../puzzles/puzzle'
-import _puzzleDetails from '../../puzzles/puzzleDetails.json'
+import Button from '@/components/button'
+import type { Puzzle } from '@/types'
+import _puzzleDetails from '@/app/puzzles/puzzleDetails.json'
 const puzzleDetails: Puzzle[] = _puzzleDetails as Puzzle[]
 const rooms: string[] = [...new Set(
   puzzleDetails.flatMap(

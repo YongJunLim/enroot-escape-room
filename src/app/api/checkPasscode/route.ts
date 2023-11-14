@@ -3,6 +3,8 @@ import { DynamoDBDocumentClient, GetCommand } from '@aws-sdk/lib-dynamodb'
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 
+import type { passcodeTable } from '@/types'
+
 const dbClient = new DynamoDBClient({
   credentials: {
     accessKeyId: process.env.AWS_ACCESS_KEY_ID as string,
@@ -24,8 +26,8 @@ export async function GET(request: NextRequest) {
     }
   }
   const command = new GetCommand(commandParams)
-  const {Item} = await docClient.send(command)
-  if (Item.passcode.toString() === passcode) {
+  const { Item } = await docClient.send(command)
+  if (typeof Item === "object" && Item.passcode.toString() === passcode) {
     return NextResponse.json({ success: true })
   } else {
     return NextResponse.json({ success: false })

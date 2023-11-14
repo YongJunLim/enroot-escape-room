@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
   const commandParams = {
     TableName: process.env.TIMINGS_TABLE,
     Item: {
-      id: puzzleId,
+      id: puzzleId.toString(),
       submission_time: submittedTimestamp,
       puzzle_name: puzzleName
     }
