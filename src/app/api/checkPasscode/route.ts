@@ -17,6 +17,7 @@ export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams
   const puzzleId = searchParams.get('puzzleId')
   const puzzleName = searchParams.get('puzzleName')
+  // const passcode = searchParams.get('passcode')
   const passcode = searchParams.get('passcode')
   const commandParams = {
     TableName: process.env.PASSCODE_TABLE,
@@ -27,7 +28,7 @@ export async function GET(request: NextRequest) {
   }
   const command = new GetCommand(commandParams)
   const { Item } = await docClient.send(command)
-  if (typeof Item === "object" && Item.passcode.toString() === passcode) {
+  if (typeof Item === "object" && Item.passcodeString === passcode) {
     return NextResponse.json({ success: true })
   } else {
     return NextResponse.json({ success: false })
