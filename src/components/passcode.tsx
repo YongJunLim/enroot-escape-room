@@ -63,11 +63,35 @@ export default function Passcode(props: PasscodeProps) {
   }, [correctPasscode])
 
   return (
+    // <>
+    //   {passcode.map((value: string | number, index: number) => {
+    //     const { onChange, onFocus, onKeyUp, onKeyDown } = getEventHandlers(index);
+    //     return (
+    //       <input
+    //         className={`w-14 h-14 rounded-md bg-gray-100 ${isComplete && correctPasscode ? 'border-emerald-500 border-2 shadow-emerald-700' : checkPasscodeSWR.isLoading ? 'border-amber-500 border shadow-amber-700' : isComplete ? 'border-red-500 border-2 shadow-red-700' : 'shadow-slate-700'} text-gray-950 text-center font-bold shadow-inner m-1`}
+    //         ref={(el) => el && (refs.current[index] = el)}
+    //         type="text"
+    //         inputMode="numeric"
+    //         maxLength={1}
+    //         pattern="\d{1}"
+    //         min={0}
+    //         max={9}
+    //         key={`index-${index}`}
+    //         readOnly={correctPasscode ? true : undefined}
+    //         onChange={correctPasscode ? undefined : onChange}
+    //         onFocus={correctPasscode ? undefined : onFocus}
+    //         onKeyUp={correctPasscode ? undefined : onKeyUp}
+    //         onKeyDown={correctPasscode ? undefined : onKeyDown}
+    //       />
+    //     );
+    //   })}
+    // </>
     <>
       {passcode.map((value: string | number, index: number) => {
-        const { onChange, onFocus, onKeyUp, onKeyDown } = getEventHandlers(index);
+        const { onChange, onFocus, onKeyUp } = getEventHandlers(index);
         return (
           <input
+            // shows amber border if non-numeric characters were somehow included (e.g. on desktops)
             className={`w-14 h-14 rounded-md bg-gray-100 ${isComplete && correctPasscode ? 'border-emerald-500 border-2 shadow-emerald-700' : checkPasscodeSWR.isLoading ? 'border-amber-500 border shadow-amber-700' : isComplete ? 'border-red-500 border-2 shadow-red-700' : 'shadow-slate-700'} text-gray-950 text-center font-bold shadow-inner m-1`}
             ref={(el) => el && (refs.current[index] = el)}
             type="text"
@@ -81,7 +105,6 @@ export default function Passcode(props: PasscodeProps) {
             onChange={correctPasscode ? undefined : onChange}
             onFocus={correctPasscode ? undefined : onFocus}
             onKeyUp={correctPasscode ? undefined : onKeyUp}
-            onKeyDown={correctPasscode ? undefined : onKeyDown}
           />
         );
       })}
